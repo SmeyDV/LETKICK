@@ -1,0 +1,14 @@
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the page takes up at least the full viewport height */
+}
+
+.content {
+  flex: 1; /* Pushes the footer down if the content is less than the viewport height */
+}
+
+footer {
+  margin-top: auto; /* This makes the footer stick to the bottom when there's not enough content */
+}
