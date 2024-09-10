@@ -86,27 +86,27 @@ export default function MenHiking({ updateCartCount }) {
   return (
     <>
       <div className="bg-gray-100 min-h-screen py-12">
-        <div className="container mx-auto px-4 m-16">
+        <div className="container mx-auto m-16">
           {/* Shoe Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {hikingShoes.map((shoe) => (
               <div
                 key={shoe.id}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between w-full max-w-sm h-full mx-auto"
+                className="bg-white pb-4 mx-auto rounded-sm  hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between w-[300px] max-w-sm h-full  shadow-custom hover:cursor-pointer"
               >
                 <div>
                   <img
                     src={shoe.image}
                     alt={`${shoe.name} hiking shoe`}
-                    className="w-full h-48 object-contain rounded-md mb-4"
+                    className="w-full h-48 object-cover  mb-4"
                   />
-                  <h2 className="text-xl font-semibold text-gray-800">
+                  <h2 className="mx-2 text-xl font-semibold text-gray-800">
                     {shoe.name}
                   </h2>
-                  <p className="font-extrabold text-xl  text-blue-600">
+                  <p className="mx-2 font-extrabold text-xl  text-blue-600">
                     {shoe.price}
                   </p>
-                  <p className="mt-2 text-gray-500">{shoe.description}</p>
+                  <p className="mt-2 mx-2 text-gray-500">{shoe.description}</p>
                 </div>
                 <div className="mt-4 justify-between">
                   <button
