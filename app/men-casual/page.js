@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import MenCasual from '../../components/mencasual';
+import MenCasual from '../../components/mencasual'; // Assuming MenCasual component renders the shoes
 import Navbar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 
