@@ -21,7 +21,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="max-w-2xl mb-8 lg:mb-0">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mt-9">
               <span className="block">Step Into Style with</span>
               <span className="block text-yellow-300 mt-2">Let Kicks</span>
             </h1>
