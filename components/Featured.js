@@ -39,14 +39,14 @@ const shoesData = [
 export default function Featured() {
   return (
     <section className="py-10">
-      <div className="container mx-auto px-4 bg-white">
-        <h2 className="text-4xl font-bold text-center text-gray-800 pt-2 mb-8">
+      <div className="container mx-auto px-4 bg-white ">
+        <h2 className="text-4xl font-bold text-center text-gray-800 pt-2 mb-8 ">
           Featured Shoes
         </h2>
-        <div className="flex flex-wrap justify-center -mx-4">
+        <div className="flex flex-wrap justify-center mx-4">
           {shoesData.map((shoe) => (
-            <div key={shoe.id} className="w-full md:w-1/2 lg:w-1/4 px-6 mb-8">
-              <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+            <div key={shoe.id} className="w-full md:w-1/2 lg:w-1/4 px-6 mb-8 ">
+              <div className="bg-white rounded-lg border-2 p-6 text-center shadow-custom ">
                 <img
                   src={shoe.image}
                   alt={shoe.name}
@@ -58,7 +58,7 @@ export default function Featured() {
                 <p className="text-gray-600 mb-2">{shoe.price}</p>
                 <p className="text-gray-600 mb-4">{shoe.description}</p>
                 <Link href="/men-casual">
-                  <span className="inline-block px-6 py-2 text-white bg-indigo-600 rounded-full hover:bg-indigo-700 transition duration-300 cursor-pointer">
+                  <span className=" px-8 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition duration-300 cursor-pointer">
                     Buy Now
                   </span>
                 </Link>

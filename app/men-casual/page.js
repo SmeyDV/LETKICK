@@ -20,12 +20,8 @@ export default function Page() {
 
   return (
     <div>
-      {/* Pass cartCount and updateCartCount to Navbar */}
       <Navbar cartCount={cartCount} updateCartCount={updateCartCount} />
-
-      {/* Pass updateCartCount to MenCasual */}
       <MenCasual updateCartCount={updateCartCount} />
-
       <Footer />
     </div>
   );
