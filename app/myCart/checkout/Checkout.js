@@ -46,13 +46,13 @@ export default function Checkout() {
   };
 
   return (
-    <div className="container mx-auto p-8 ">
+    <div className="container mx-auto p-8">
       <h1 className="text-3xl font-bold mb-8">Checkout</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Item Summary */}
-        <div className="lg:col-span-1 bg-white p-6 border border-gray-300 rounded-lg ">
-          <h2 className="text-2xl font-semibold mb-4 ">Order Summary</h2>
+        <div className="lg:col-span-1 bg-white p-6 border border-gray-300 rounded-lg">
+          <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
           {cartItems.length > 0 ? (
             <ul className="space-y-4">
               {cartItems.map((item, index) => (
@@ -86,8 +86,8 @@ export default function Checkout() {
             <h2 className="text-2xl font-semibold mb-4">Complete Details</h2>
 
             {/* Shipping Details */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-              <div>
+            <div className="grid grid-cols-1 gap-6 mb-6">
+              <div className="sm:col-span-2">
                 <label className="block text-sm font-medium text-gray-700">
                   Name
                 </label>
@@ -100,7 +100,7 @@ export default function Checkout() {
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label className="block text-sm font-medium text-gray-700">
                   Email
                 </label>
@@ -126,7 +126,7 @@ export default function Checkout() {
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div>
+              <div className="sm:col-span-1">
                 <label className="block text-sm font-medium text-gray-700">
                   City
                 </label>
@@ -139,7 +139,7 @@ export default function Checkout() {
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div>
+              <div className="sm:col-span-1">
                 <label className="block text-sm font-medium text-gray-700">
                   Postal Code
                 </label>
@@ -152,7 +152,7 @@ export default function Checkout() {
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div>
+              <div className="sm:col-span-2">
                 <label className="block text-sm font-medium text-gray-700">
                   Country
                 </label>
@@ -169,8 +169,8 @@ export default function Checkout() {
 
             {/* Payment Details */}
             <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-              <div>
+            <div className="grid grid-cols-1 gap-6 mb-6">
+              <div className="sm:col-span-2">
                 <label className="block text-sm font-medium text-gray-700">
                   Card Number
                 </label>
@@ -183,7 +183,7 @@ export default function Checkout() {
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div>
+              <div className="sm:col-span-1">
                 <label className="block text-sm font-medium text-gray-700">
                   Expiry Date
                 </label>
@@ -197,7 +197,7 @@ export default function Checkout() {
                   className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div>
+              <div className="sm:col-span-1">
                 <label className="block text-sm font-medium text-gray-700">
                   CVC
                 </label>
