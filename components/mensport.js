@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ShoeCard from "./ShoeCard";
-import products from "../app/data/products";
+import products from "../app/data/products"; // Ensure this path is correct
 
 export default function MenSport({ updateCartCount }) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // Ensure this runs only on the client-side
     setIsClient(true);
   }, []);
 
@@ -14,17 +15,20 @@ export default function MenSport({ updateCartCount }) {
   const sportShoes = products.filter((product) => product.type === "sport");
 
   const addToCart = (shoe) => {
-    try {
-      if (!isClient) return;
+    if (!isClient) return;
 
+    try {
+      // Get existing cart from localStorage
       let existingCart = JSON.parse(localStorage.getItem("cart")) || [];
 
       const isItemInCart = existingCart.some((item) => item.id === shoe.id);
 
       if (!isItemInCart) {
+        // Add the shoe to the cart
         existingCart.push(shoe);
         localStorage.setItem("cart", JSON.stringify(existingCart));
 
+        // Update cart count if the function is provided
         if (updateCartCount) {
           updateCartCount(existingCart.length);
         }

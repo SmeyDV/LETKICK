@@ -24,7 +24,7 @@ export default function HeroSection() {
           <div className="max-w-2xl">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
               <span className="block">Step Into Style with</span>
-              <span className="block text-yellow-300 mt-2">Let Kick</span>
+              <span className="block text-yellow-300 mt-2">Let Kicks</span>
             </h1>
             <p className="mt-6 text-xl text-gray-100 sm:text-2xl max-w-xl">
               Discover our wide range of shoes for every occasion. From sporty

@@ -34,7 +34,7 @@ export default function ShoeCard({ shoe }) {
       <div className="mt-4 justify-between">
         <button
           onClick={(e) => {
-            e.stopPropagation();  // Prevent event bubbling to parent
+            e.stopPropagation();  
             alert(`${shoe.name} added to cart!`);
           }}
           className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 mx-2"
