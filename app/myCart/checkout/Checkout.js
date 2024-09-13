@@ -46,13 +46,13 @@ export default function Checkout() {
   };
 
   return (
-    <div className="container mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+    <div className="container mx-auto p-4 sm:p-8">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Checkout</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Item Summary */}
-        <div className="lg:col-span-1 bg-white p-6 border border-gray-300 rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
+        <div className="lg:col-span-1 bg-white p-4 sm:p-6 border border-gray-300 rounded-lg">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-4">Order Summary</h2>
           {cartItems.length > 0 ? (
             <ul className="space-y-4">
               {cartItems.map((item, index) => (
@@ -61,13 +61,13 @@ export default function Checkout() {
                   className="flex justify-between items-center border-b pb-2"
                 >
                   <div>
-                    <h3 className="text-lg font-medium">{item.name}</h3>
-                    <p className="text-gray-600">Price: {item.price}</p>
+                    <h3 className="text-base sm:text-lg font-medium">{item.name}</h3>
+                    <p className="text-sm sm:text-base text-gray-600">Price: {item.price}</p>
                   </div>
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-24 h-24 object-contain rounded-md"
+                    className="w-16 h-16 sm:w-24 sm:h-24 object-contain rounded-md"
                   />
                 </li>
               ))}
@@ -81,14 +81,14 @@ export default function Checkout() {
         </div>
 
         {/* Wrapped Form with Border */}
-        <div className="lg:col-span-2 border border-gray-300 rounded-lg p-8 bg-white shadow-md">
+        <div className="lg:col-span-2 border border-gray-300 rounded-lg p-4 sm:p-8 bg-white shadow-md">
           <form onSubmit={handleSubmit}>
-            <h2 className="text-2xl font-semibold mb-4">Complete Details</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold mb-4">Complete Details</h2>
 
             {/* Shipping Details */}
-            <div className="grid grid-cols-1 gap-6 mb-6">
-              <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
+              <div className="col-span-full sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Name
                 </label>
                 <input
@@ -97,11 +97,11 @@ export default function Checkout() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">
+              <div className="col-span-full sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email
                 </label>
                 <input
@@ -110,11 +110,11 @@ export default function Checkout() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div className="col-span-2">
-                <label className="block text-sm font-medium text-gray-700">
+              <div className="col-span-full">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Address
                 </label>
                 <input
@@ -123,11 +123,11 @@ export default function Checkout() {
                   value={formData.address}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div className="sm:col-span-1">
-                <label className="block text-sm font-medium text-gray-700">
+              <div className="col-span-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   City
                 </label>
                 <input
@@ -136,11 +136,11 @@ export default function Checkout() {
                   value={formData.city}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div className="sm:col-span-1">
-                <label className="block text-sm font-medium text-gray-700">
+              <div className="col-span-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Postal Code
                 </label>
                 <input
@@ -149,11 +149,11 @@ export default function Checkout() {
                   value={formData.postalCode}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">
+              <div className="col-span-full sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Country
                 </label>
                 <input
@@ -162,16 +162,16 @@ export default function Checkout() {
                   value={formData.country}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
             </div>
 
             {/* Payment Details */}
-            <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
-            <div className="grid grid-cols-1 gap-6 mb-6">
-              <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">Payment Details</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
+              <div className="col-span-full sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Card Number
                 </label>
                 <input
@@ -180,11 +180,11 @@ export default function Checkout() {
                   value={formData.cardNumber}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div className="sm:col-span-1">
-                <label className="block text-sm font-medium text-gray-700">
+              <div className="col-span-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Expiry Date
                 </label>
                 <input
@@ -194,11 +194,11 @@ export default function Checkout() {
                   onChange={handleInputChange}
                   required
                   placeholder="MM/YY"
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-              <div className="sm:col-span-1">
-                <label className="block text-sm font-medium text-gray-700">
+              <div className="col-span-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   CVC
                 </label>
                 <input
@@ -207,15 +207,15 @@ export default function Checkout() {
                   value={formData.cardCVC}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                  className="block w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
             </div>
 
-            {/* Shortened Button Label */}
+            {/* Submit Button */}
             <button
               type="submit"
-              className="mx-auto w-full bg-blue-500 text-white  text-lg font-light py-2 rounded-md hover:opacity-90 transition duration-300"
+              className="w-full bg-blue-500 text-white text-lg font-light py-2 rounded-md hover:opacity-90 transition duration-300"
             >
               Complete Order
             </button>
