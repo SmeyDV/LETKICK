@@ -1,6 +1,7 @@
-'use client';
+"use client";
 import React from 'react';
 import Link from 'next/link';
+import { Card, CardHeader } from '@/components/ui/card'; // Assuming shadcn components are imported from this path
 
 const shoeTypes = [
   {
@@ -25,18 +26,18 @@ const shoeTypes = [
 
 export default function TypeShoes() {
   return (
-    <div className="bg-white py-16">
+    <div className="bg-white dark:bg-gray-900 py-16">
       <div className="container mx-auto px-4">
         <header className="mb-12 text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Select Your Style</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">Discover the perfect shoes for every occasion and adventure.</p>
+          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-4">Select Your Style</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Discover the perfect shoes for every occasion and adventure.</p>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {shoeTypes.map((type) => (
             <Link href={type.link} key={type.id} className="block">
-              <div className="overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full bg-white rounded-lg">
-                <div className="p-0">
+              <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full bg-white dark:bg-gray-800 rounded-lg">
+                <CardHeader className="p-0">
                   <div className="relative aspect-[3/4]">
                     <img
                       src={type.image}
@@ -47,8 +48,8 @@ export default function TypeShoes() {
                       <h2 className="text-3xl font-bold text-white text-center px-4">{type.title}</h2>
                     </div>
                   </div>
-                </div>
-              </div>
+                </CardHeader>
+              </Card>
             </Link>
           ))}
         </div>

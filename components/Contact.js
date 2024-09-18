@@ -20,7 +20,7 @@ const Contact = () => {
 
   return (
     <div className="container mx-auto mt-12 px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8 text-center">Contact</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
       <h2 className="text-2xl ml-2 sm:mx-auto sm:items-center font-normal mb-8">We love to hear from you!</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

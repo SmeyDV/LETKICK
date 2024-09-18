@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "./ui/card"; 
@@ -46,7 +47,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 mt-20 max-w-3xl">
+    <div className="container mx-auto p-6 mt-20 max-w-3xl bg-white dark:bg-gray-800">
       {cartItems.length === 0 ? (
         <div className="text-center">
           <Alert variant="info" className="mb-6">
@@ -61,14 +62,14 @@ const Cart = () => {
       ) : (
         <Card className="shadow-lg">
           <CardHeader>
-            <CardTitle>Your Cart</CardTitle>
+            <CardTitle className="text-gray-900 dark:text-white">Your Cart</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-6">
               {cartItems.map((item, index) => (
                 <li
                   key={index}
-                  className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-md"
+                  className="flex justify-between items-center bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow-md"
                 >
                   <div className="flex items-center space-x-6">
                     <img
@@ -77,11 +78,13 @@ const Cart = () => {
                       className="w-20 h-20 object-cover rounded-lg border"
                     />
                     <div>
-                      <h3 className="text-xl font-semibold">{item.name}</h3>
-                      <p className="text-gray-600">Price: {item.price}</p>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                        {item.name}
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300">Price: {item.price}</p>
                       {/* Display selected size and color */}
-                      <p className="text-gray-600">Size: {item.selectedSize}</p>
-                      <p className="text-gray-600">
+                      <p className="text-gray-600 dark:text-gray-300">Size: {item.selectedSize}</p>
+                      <p className="text-gray-600 dark:text-gray-300">
                         Color: <span style={{ backgroundColor: item.selectedColor, display: 'inline-block', width: '16px', height: '16px', borderRadius: '50%' }}></span> {item.selectedColor}
                       </p>
                     </div>
@@ -97,7 +100,7 @@ const Cart = () => {
             </ul>
           </CardContent>
           <CardFooter className="mt-8 text-right flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               Total: ${calculateTotalPrice().toFixed(2)}
             </h2>
             <div className="flex justify-end space-x-4 mt-4">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google"; 
+import { Poppins } from "next/font/google";
+import { ThemeProvider } from "next-themes"; // Import ThemeProvider from next-themes
 import "./globals.css";
-
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -17,7 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      {/* Add class attribute to enable class-based theme switching */}
+      <body className={poppins.className}>
+        <ThemeProvider attribute="class">
+          {" "}
+          {/* Wrap with ThemeProvider */}
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

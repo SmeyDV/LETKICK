@@ -31,7 +31,7 @@ export default function ProductDetails({ params }) {
   if (!shoe) {
     // Display skeleton loader while the shoe is being fetched
     return (
-      <div className="min-h-screen flex flex-col bg-gray-100">
+      <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
         <Navbar />
         <main className="mt-20 flex-grow">
           <ProductDetailsSkeleton />
@@ -68,11 +68,11 @@ export default function ProductDetails({ params }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
       <Navbar />
       <main className="mt-20 flex-grow">
         <div className="container mx-auto py-12 px-4">
-          <Card className="rounded-md overflow-hidden p-8 shadow-custom">
+          <Card className="rounded-md overflow-hidden p-8 shadow-custom bg-white dark:bg-gray-800">
             <div className="flex flex-col md:flex-row gap-6 md:gap-10">
               {/* Product Image */}
               <ProductImage image={shoe.image} name={shoe.name} />

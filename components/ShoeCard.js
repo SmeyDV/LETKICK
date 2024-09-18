@@ -8,7 +8,7 @@ export default function ShoeCard({ shoe }) {
     <div className="flex justify-center items-center"> {/* Wrapper to center the card */}
       <Card
         key={shoe.id}
-        className="w-[300px] max-w-sm h-full hover:cursor-pointer flex flex-col justify-between"
+        className="w-[300px] max-w-sm h-full hover:cursor-pointer flex flex-col justify-between bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
       >
         <CardHeader className="overflow-hidden">
           <img
@@ -18,9 +18,9 @@ export default function ShoeCard({ shoe }) {
           />
         </CardHeader>
         <CardContent className="flex-grow">
-          <CardTitle className="text-xl font-semibold text-gray-800">{shoe.name}</CardTitle>
-          <CardDescription className="font-extrabold text-xl text-blue-600">{shoe.price}</CardDescription>
-          <p className="mt-2 text-gray-500">{shoe.description}</p>
+          <CardTitle className="text-xl font-semibold text-gray-800 dark:text-gray-100">{shoe.name}</CardTitle>
+          <CardDescription className="font-extrabold text-xl text-blue-600 dark:text-blue-400">{shoe.price}</CardDescription>
+          <p className="mt-2 text-gray-500 dark:text-gray-300">{shoe.description}</p>
         </CardContent>
         <CardFooter className="mt-4 flex justify-center"> {/* Center the button */}
           <Link href={`/product/${shoe.id}`}>

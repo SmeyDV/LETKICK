@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from "react";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,9 +23,9 @@ export default function CheckoutForm({
   };
 
   return (
-    <Card className="lg:col-span-2 shadow-md">
+    <Card className="lg:col-span-2 shadow-md bg-white dark:bg-gray-800">
       <CardHeader>
-        <CardTitle>Complete Details</CardTitle>
+        <CardTitle className="text-gray-900 dark:text-white">Complete Details</CardTitle>
       </CardHeader>
       <CardContent>
         {/* Success Alert */}
@@ -38,7 +39,7 @@ export default function CheckoutForm({
           {/* Shipping Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
             <div className="col-span-full sm:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Name
               </label>
               <Input
@@ -47,10 +48,11 @@ export default function CheckoutForm({
                 value={formData.name}
                 onChange={handleInputChange}
                 required
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
             <div className="col-span-full sm:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Email
               </label>
               <Input
@@ -59,10 +61,11 @@ export default function CheckoutForm({
                 value={formData.email}
                 onChange={handleInputChange}
                 required
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
             <div className="col-span-full">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Address
               </label>
               <Input
@@ -71,10 +74,11 @@ export default function CheckoutForm({
                 value={formData.address}
                 onChange={handleInputChange}
                 required
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
             <div className="col-span-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 City
               </label>
               <Input
@@ -83,10 +87,11 @@ export default function CheckoutForm({
                 value={formData.city}
                 onChange={handleInputChange}
                 required
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
             <div className="col-span-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Postal Code
               </label>
               <Input
@@ -95,10 +100,11 @@ export default function CheckoutForm({
                 value={formData.postalCode}
                 onChange={handleInputChange}
                 required
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
             <div className="col-span-full sm:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Country
               </label>
               <Input
@@ -107,17 +113,18 @@ export default function CheckoutForm({
                 value={formData.country}
                 onChange={handleInputChange}
                 required
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
           </div>
 
           {/* Payment Details */}
-          <h2 className="text-lg sm:text-xl font-semibold mb-4">
+          <h2 className="text-lg sm:text-xl font-semibold mb-4 text-gray-900 dark:text-white">
             Payment Details
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
             <div className="col-span-full sm:col-span-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Card Number
               </label>
               <Input
@@ -126,10 +133,11 @@ export default function CheckoutForm({
                 value={formData.cardNumber}
                 onChange={handleInputChange}
                 required
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
             <div className="col-span-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Expiry Date
               </label>
               <Input
@@ -139,10 +147,11 @@ export default function CheckoutForm({
                 onChange={handleInputChange}
                 required
                 placeholder="MM/YY"
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
             <div className="col-span-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 CVC
               </label>
               <Input
@@ -151,6 +160,7 @@ export default function CheckoutForm({
                 value={formData.cardCVC}
                 onChange={handleInputChange}
                 required
+                className="dark:bg-gray-700 dark:text-gray-200"
               />
             </div>
           </div>

@@ -8,6 +8,7 @@ import { ShoeCardSkeleton } from "../../components/ShoeCardSkeleton"; // Import 
 export default function Page() {
   const [cartCount, setCartCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
   // Function to update cart count based on localStorage
   const updateCartCount = () => {
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -20,7 +21,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
       {/* Pass the cartCount to Navbar */}
       <Navbar cartCount={cartCount} />
       {/* Show Skeleton while loading */}

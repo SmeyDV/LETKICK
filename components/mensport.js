@@ -15,7 +15,7 @@ export default function MenSport() {
   const sportShoes = products.filter((product) => product.type === "sport");
 
   return (
-    <div className="bg-gray-100 min-h-screen py-12 mt-16">
+    <div className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen py-12 mt-16">
       <div className="container mx-auto mb-16">
         {/* Shoe Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

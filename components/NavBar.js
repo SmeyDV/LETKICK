@@ -10,6 +10,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
+import ThemeSwitcher from "./ThemeSwitcher"; // Import ThemeSwitcher
 
 const NavItem = React.forwardRef(({ className, ...props }, ref) => (
   <Link
@@ -45,11 +46,11 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white shadow-md border-b border-gray-200 fixed top-0 left-0 right-0 z-50">
+    <nav className="bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-800 transition duration-300">
+            <Link href="/" className="text-2xl font-bold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-600 transition duration-300">
               Let Kicks
             </Link>
           </div>
@@ -58,13 +59,13 @@ export default function Navbar() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
+                  <NavigationMenuLink href="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
                     Home
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
-                    Types {/* Changed from "Men" to "Types" */}
+                  <NavigationMenuTrigger className="text-gray-700 dark:text-gray-300 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
+                    Types
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[250px] gap-2 p-3">
@@ -77,7 +78,7 @@ export default function Navbar() {
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <NavigationMenuLink href="/contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
+                  <NavigationMenuLink href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
                     Contact
                   </NavigationMenuLink>
                 </NavigationMenuItem>
@@ -86,7 +87,10 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center space-x-4">
-            <Link href="/myCart" className="relative text-gray-700 hover:text-blue-600 transition duration-300">
+            {/* ThemeSwitcher */}
+            <ThemeSwitcher />
+
+            <Link href="/myCart" className="relative text-gray-700 dark:text-gray-300 hover:text-blue-600 transition duration-300">
               <ShoppingCart className="h-6 w-6" />
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
@@ -109,25 +113,25 @@ export default function Navbar() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white py-2">
-          <Link href="/" className="block text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium" onClick={toggleMobileMenu}>
+        <div className="md:hidden bg-white dark:bg-gray-800 py-2">
+          <Link href="/" className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 px-4 py-2 text-sm font-medium" onClick={toggleMobileMenu}>
             Home
           </Link>
           <div className="relative">
             <button 
               onClick={toggleSubMenu}
-              className="flex items-center justify-between w-full text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium"
+              className="flex items-center justify-between w-full text-gray-700 dark:text-gray-300 hover:text-blue-600 px-4 py-2 text-sm font-medium"
             >
-              Types {/* Changed from "Men" to "Types" */}
+              Types
               <ChevronDown className={`h-4 w-4 ml-1 transition-transform duration-200 ${isSubMenuOpen ? 'transform rotate-180' : ''}`} />
             </button>
             {isSubMenuOpen && (
-              <div className="bg-gray-50 py-2">
+              <div className="bg-gray-50 dark:bg-gray-700 py-2">
                 {typeItems.map((item, index) => (
                   <Link 
                     key={index} 
                     href={item.href} 
-                    className="block text-gray-700 hover:text-blue-600 hover:bg-gray-100 px-6 py-2 text-sm" 
+                    className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 hover:bg-gray-100 dark:hover:bg-gray-600 px-6 py-2 text-sm" 
                     onClick={toggleMobileMenu}
                   >
                     {item.label}
@@ -136,7 +140,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <Link href="/contact" className="block text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium" onClick={toggleMobileMenu}>
+          <Link href="/contact" className="block text-gray-700 dark:text-gray-300 hover:text-blue-600 px-4 py-2 text-sm font-medium" onClick={toggleMobileMenu}>
             Contact
           </Link>
         </div>

@@ -47,7 +47,7 @@ export default function Checkout() {
   };
 
   return (
-    <div className="container mx-auto p-4 sm:p-8">
+    <div className="container mx-auto p-4 sm:p-8 bg-white dark:bg-gray-900 text-gray-900 dark:text-white my-24 rounded-lg">
       <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Checkout</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Item Summary */}

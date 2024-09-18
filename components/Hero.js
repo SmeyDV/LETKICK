@@ -6,7 +6,7 @@ import { Button } from "./ui/button"; // Importing ShadCN Button component
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-r from-blue-500 to-indigo-500 overflow-hidden min-h-screen flex items-center">
+    <section className="relative bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-gray-800 dark:to-gray-900 overflow-hidden min-h-screen flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -22,11 +22,11 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="max-w-2xl mb-8 lg:mb-0">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mt-9">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white dark:text-gray-100 leading-tight mt-9">
               <span className="block">Step Into Style with</span>
-              <span className="block text-yellow-300 mt-2">Let Kicks</span>
+              <span className="block text-yellow-300 dark:text-yellow-400 mt-2">Let Kicks</span>
             </h1>
-            <p className="mt-6 text-xl text-gray-100 sm:text-2xl max-w-xl">
+            <p className="mt-6 text-xl text-gray-100 dark:text-gray-300 sm:text-2xl max-w-xl">
               Discover our wide range of shoes for every occasion. From sporty
               to casual, find the perfect pair to kickstart your journey!
             </p>
@@ -39,7 +39,7 @@ export default function HeroSection() {
                 </Button>
               </Link>
               <Link href="/contact" passHref>
-                <Button variant="outline" className="px-8 py-3 rounded-full text-black border-white hover:bg-white  transition duration-300 ease-in-out hover:scale-105">
+                <Button variant="outline" className="px-8 py-3 rounded-full text-black dark:text-white border-white dark:border-gray-300 hover:bg-white dark:hover:bg-gray-700 transition duration-300 ease-in-out hover:scale-105">
                   Contact Us
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
@@ -62,7 +62,7 @@ export default function HeroSection() {
         </div>
       </div>
       {/* Gradient Overlay at the Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-gray-900 to-transparent"></div>
     </section>
   );
 }

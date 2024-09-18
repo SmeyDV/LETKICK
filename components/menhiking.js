@@ -15,7 +15,7 @@ export default function MenHiking() {
   const hikingShoes = products.filter((product) => product.type === "hiking");
 
   return (
-    <div className="bg-gray-100 min-h-screen py-12">
+    <div className="bg-gray-100 dark:bg-gray-900 min-h-screen py-12">
       <div className="container mx-auto m-16">
         {/* Shoe Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
