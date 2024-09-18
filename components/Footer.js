@@ -1,70 +1,98 @@
-import React from 'react';
-import Link from 'next/link';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import React from "react";
+import Link from "next/link";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+} from "react-icons/fa";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-gray-700 border-t border-gray-400 h-16"> 
-      <div className="container mx-auto px-4 mt-4">
-        <div className="flex flex-col md:flex-row justify-between items-start">
-          <div className="mb-8 md:mb-0 md:w-1/3">
-            <Link href="/" className="text-3xl font-bold text-gray-900">
+    <footer className="bg-white text-gray-700 border-t border-gray-200">
+      <div className="container mx-auto px-4 py-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <Link href="/" className="text-4xl font-bold text-gray-900">
               Let Kick
             </Link>
-            <p className="mt-4 text-sm text-gray-600 leading-relaxed">
-              Elevate your style with the perfect pair of shoes from Let Kick. Discover a variety of footwear to suit every occasion.
+            <p className="mt-4 text-base text-gray-600 leading-relaxed">
+              Elevate your style with the perfect pair of shoes from Let Kick.
+              Discover a variety of footwear to suit every occasion.
             </p>
           </div>
 
-          {/* Navigation Links */}
-          <div className="flex flex-col md:flex-row md:space-x-16 md:w-1/3  ">
-            <div className="mb-8 md:mb-0">
-              <h4 className="font-semibold text-gray-900 mb-4">Explore</h4>
-              <ul>
-                <li className="mb-2">
-                  <Link href="#" className="hover:text-indigo-600 transition-colors duration-200">
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4 text-lg">Explore</h4>
+            <ul className="space-y-2">
+              <li>
+                <Button variant="link" asChild className="p-0">
+                  <Link
+                    href="#"
+                    className="text-base text-gray-600 hover:text-indigo-600"
+                  >
                     Shop
                   </Link>
-                </li>
-                <li className="mb-2">                
-                </li>
-                <li className="mb-2">
-                  <Link href="/contact" className="hover:text-indigo-600 transition-colors duration-200">
-                    Contact 
+                </Button>
+              </li>
+              <li>
+                <Button variant="link" asChild className="p-0">
+                  <Link
+                    href="/contact"
+                    className="text-base text-gray-600 hover:text-indigo-600"
+                  >
+                    Contact
                   </Link>
-                </li>
-                <li className="mb-2">
-                  <Link href="/faq" className="hover:text-indigo-600 transition-colors duration-200">
+                </Button>
+              </li>
+              <li>
+                <Button variant="link" asChild className="p-0">
+                  <Link
+                    href="/faq"
+                    className="text-base text-gray-600 hover:text-indigo-600"
+                  >
                     FAQ
                   </Link>
-                </li>
-              </ul>
-            </div>
+                </Button>
+              </li>
+            </ul>
+          </div>
 
-            {/* Social Media Links */}
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Connect with Us</h4>
-              <div className="flex space-x-4">
-                <Link href="#" className="text-gray-600 hover:text-indigo-600 transition-colors duration-200">
-                  <FaFacebookF size={20} />
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4 text-lg">
+              Connect with Us
+            </h4>
+            <div className="flex space-x-4">
+              <Button variant="ghost" size="icon" asChild className="p-1">
+                <Link href="#" className="text-gray-600 hover:text-indigo-600">
+                  <FaFacebookF size={24} />
                 </Link>
-                <Link href="#" className="text-gray-600 hover:text-indigo-600 transition-colors duration-200">
-                  <FaTwitter size={20} />
+              </Button>
+              <Button variant="ghost" size="icon" asChild className="p-1">
+                <Link href="#" className="text-gray-600 hover:text-indigo-600">
+                  <FaTwitter size={24} />
                 </Link>
-                <Link href="#" className="text-gray-600 hover:text-indigo-600 transition-colors duration-200">
-                  <FaInstagram size={20} />
+              </Button>
+              <Button variant="ghost" size="icon" asChild className="p-1">
+                <Link href="#" className="text-gray-600 hover:text-indigo-600">
+                  <FaInstagram size={24} />
                 </Link>
-                <Link href="#" className="text-gray-600 hover:text-indigo-600 transition-colors duration-200">
-                  <FaLinkedinIn size={20} />
+              </Button>
+              <Button variant="ghost" size="icon" asChild className="p-1">
+                <Link href="#" className="text-gray-600 hover:text-indigo-600">
+                  <FaLinkedinIn size={24} />
                 </Link>
-              </div>
+              </Button>
             </div>
           </div>
         </div>
 
-        {/* Copyright Section */}
-        <div className="mx-8  pt-4 text-center">
-          <p className="text-md text-gray-600">
+        <Separator className="my-4" />
+
+        <div className="text-center">
+          <p className="text-base text-gray-600">
             &copy; {new Date().getFullYear()} Let Kick. All rights reserved.
           </p>
         </div>

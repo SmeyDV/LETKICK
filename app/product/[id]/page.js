@@ -6,10 +6,9 @@ import Navbar from "@/components/NavBar";
 import ProductImage from "./ProductImage";
 import ProductInfo from "./ProductInfo";
 import ProductOptions from "./ProductOptions";
-import AlertMessage from "./AlertMessage";
+import AlertMessage from "./AlertMessage"; // Import the updated AlertMessage
 import { Card, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Alert } from "@/components/ui/alert";
 import { ProductDetailsSkeleton } from "./ProductDetailsSkeleton"; // Import the Skeleton component
 
 export default function ProductDetails({ params }) {
@@ -94,13 +93,9 @@ export default function ProductDetails({ params }) {
       </main>
 
       {/* Alert Message */}
-      {showAlert && (
-        <div className="fixed bottom-4 right-4">
-          <Alert variant="success" className="w-64">
-            Item added to cart!
-          </Alert>
-        </div>
-      )}
+      <div className="fixed bottom-4 right-4">
+        <AlertMessage showAlert={showAlert} />
+      </div>
 
       <Footer />
     </div>
