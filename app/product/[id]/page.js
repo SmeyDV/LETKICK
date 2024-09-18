@@ -6,10 +6,10 @@ import Navbar from "@/components/NavBar";
 import ProductImage from "./ProductImage";
 import ProductInfo from "./ProductInfo";
 import ProductOptions from "./ProductOptions";
-import AlertMessage from "./AlertMessage"; // Import the updated AlertMessage
+import AlertMessage from "./AlertMessage";
 import { Card, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ProductDetailsSkeleton } from "./ProductDetailsSkeleton"; // Import the Skeleton component
+import { ProductDetailsSkeleton } from "./ProductDetailsSkeleton";
 
 export default function ProductDetails({ params }) {
   const { id } = params;
@@ -43,6 +43,23 @@ export default function ProductDetails({ params }) {
 
   const handleAddToCart = () => {
     if (selectedSize && selectedColor) {
+      // Get the current cart items from local storage
+      const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Create an item object with the selected shoe details
+      const itemToAdd = {
+        ...shoe,
+        selectedSize,
+        selectedColor,
+      };
+
+      // Add the new item to the cart
+      existingCartItems.push(itemToAdd);
+
+      // Save the updated cart back to local storage
+      localStorage.setItem("cart", JSON.stringify(existingCartItems));
+
+      // Show the alert message
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 3000);
     } else {
@@ -55,13 +72,13 @@ export default function ProductDetails({ params }) {
       <Navbar />
       <main className="mt-20 flex-grow">
         <div className="container mx-auto py-12 px-4">
-          <Card className="rounded-md overflow-hidden p-6 shadow-custom">
+          <Card className="rounded-md overflow-hidden p-8 shadow-custom">
             <div className="flex flex-col md:flex-row gap-6 md:gap-10">
               {/* Product Image */}
               <ProductImage image={shoe.image} name={shoe.name} />
 
               {/* Product Details Container */}
-              <div className="flex flex-col space-y-4">
+              <div className="flex flex-col justify-between flex-grow space-y-4">
                 {/* Product Info */}
                 <ProductInfo
                   brand={shoe.brand}
@@ -81,7 +98,7 @@ export default function ProductDetails({ params }) {
                 />
 
                 {/* Add to Cart Button */}
-                <CardFooter className="flex justify-start">
+                <CardFooter className="mt-4 flex justify-start">
                   <Button onClick={handleAddToCart} variant="default">
                     Add to Cart
                   </Button>
@@ -93,7 +110,7 @@ export default function ProductDetails({ params }) {
       </main>
 
       {/* Alert Message */}
-      <div className="fixed bottom-4 right-4">
+      <div className="fixed bottom-4 p-10 right-4">
         <AlertMessage showAlert={showAlert} />
       </div>
 

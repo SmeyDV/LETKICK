@@ -1,44 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Card, CardHeader, CardContent, CardFooter } from "./ui/card"; // Importing Card components
-import { Button } from "./ui/button"; // Importing Button component
+import { Card, CardHeader, CardContent, CardFooter } from "./ui/card";
+import { Button } from "./ui/button";
+import products from "../app/data/products";
 
-const shoesData = [
-  {
-    id: 1,
-    name: "Air Jordan",
-    price: "$299.99",
-    description: "Perfect for running and everyday casual wear.",
-    image:
-      "https://ir.ebaystatic.com/pictures/aw/pics/sneakers/s_l640_c46b85470d.png",
-  },
-  {
-    id: 2,
-    name: "Classic Loafers",
-    price: "$99.99",
-    description: "Elegant loafers for formal and semi-formal occasions.",
-    image:
-      "https://static.vecteezy.com/system/resources/previews/024/764/478/original/casual-shoes-isolated-3d-png.png",
-  },
-  {
-    id: 3,
-    name: "Salomon X Ultra 3",
-    price: "$150",
-    description:
-      "A lightweight, durable hiking shoe designed for all-terrain adventures.",
-    image:
-      "https://outdoorguru.com/wp-content/uploads/2020/04/Salomon_X_Ultra_3_GTX_Cover.jpg",
-  },
-  {
-    id: 4,
-    name: "Converse All-Stars",
-    price: "$199.99",
-    description: "Comfortable flip flops for a relaxed day out.",
-    image: "https://pngimg.com/d/converse_PNG66.png",
-  },
-];
+// Function to shuffle an array
+function shuffleArray(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
 
 export default function Featured() {
+  const [featuredShoes, setFeaturedShoes] = useState([]);
+
+  useEffect(() => {
+    // Shuffle the products array and then take the first 4 items on the client side
+    const shuffledProducts = shuffleArray([...products]).slice(0, 8);
+    setFeaturedShoes(shuffledProducts);
+  }, []);
+
   return (
     <section className="py-10">
       <div className="container mx-auto px-4 bg-white">
@@ -46,31 +37,29 @@ export default function Featured() {
           Featured Shoes
         </h2>
         <div className="flex flex-wrap justify-center mx-4">
-          {shoesData.map((shoe) => (
+          {featuredShoes.map((shoe) => (
             <div key={shoe.id} className="w-full md:w-1/2 lg:w-1/4 px-6 mb-8">
-              <Card className="text-center h-full flex flex-col"> {/* Make the Card a flex container */}
-                <CardHeader className="p-0">
-                  <img
-                    src={shoe.image}
-                    alt={shoe.name}
-                    className="w-full h-52 object-contain mb-4 rounded-t-md"
-                  />
-                </CardHeader>
-                <CardContent className="flex-grow"> {/* Allow CardContent to grow and fill the space */}
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                    {shoe.name}
-                  </h3>
-                  <p className="text-gray-600 mb-2">{shoe.price}</p>
-                  <p className="text-gray-600 mb-4">{shoe.description}</p>
-                </CardContent>
-                <CardFooter className="flex justify-center mt-auto">
-                  <Link href="/men-casual" passHref>
-                    <Button variant="default">
-                      Buy Now
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
+              <Link href={`/product/${shoe.id}`} passHref>
+                <Card className="text-center h-full flex flex-col cursor-pointer">
+                  <CardHeader className="p-0">
+                    <img
+                      src={shoe.image}
+                      alt={shoe.name}
+                      className="w-full h-52 object-contain mb-4 rounded-t-md"
+                    />
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                      {shoe.name}
+                    </h3>
+                    <p className="text-gray-600 mb-2">{shoe.price}</p>
+                    <p className="text-gray-600 mb-4">{shoe.description}</p>
+                  </CardContent>
+                  <CardFooter className="flex justify-center mt-auto">
+                    <Button variant="default">Buy Now</Button>
+                  </CardFooter>
+                </Card>
+              </Link>
             </div>
           ))}
         </div>

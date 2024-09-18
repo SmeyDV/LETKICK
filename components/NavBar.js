@@ -38,7 +38,7 @@ export default function Navbar() {
     return () => window.removeEventListener("storage", updateCartCount);
   }, []);
 
-  const menItems = [
+  const typeItems = [
     { href: "/men-sport", label: "Sport" },
     { href: "/men-casual", label: "Casual" },
     { href: "/men-hiking", label: "Hiking" },
@@ -64,11 +64,11 @@ export default function Navbar() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
-                    Men
+                    Types {/* Changed from "Men" to "Types" */}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[250px] gap-2 p-3">
-                      {menItems.map((item, index) => (
+                      {typeItems.map((item, index) => (
                         <li key={index}>
                           <NavItem href={item.href}>{item.label}</NavItem>
                         </li>
@@ -118,12 +118,12 @@ export default function Navbar() {
               onClick={toggleSubMenu}
               className="flex items-center justify-between w-full text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium"
             >
-              Men
+              Types {/* Changed from "Men" to "Types" */}
               <ChevronDown className={`h-4 w-4 ml-1 transition-transform duration-200 ${isSubMenuOpen ? 'transform rotate-180' : ''}`} />
             </button>
             {isSubMenuOpen && (
               <div className="bg-gray-50 py-2">
-                {menItems.map((item, index) => (
+                {typeItems.map((item, index) => (
                   <Link 
                     key={index} 
                     href={item.href} 

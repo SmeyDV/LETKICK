@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "./ui/card"; 
+import { Button } from "./ui/button"; 
+import { Alert } from "./ui/alert"; 
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -46,70 +49,73 @@ const Cart = () => {
     <div className="container mx-auto p-6 mt-20 max-w-3xl">
       {cartItems.length === 0 ? (
         <div className="text-center">
-          <p className="text-gray-500 my-16 text-2xl">Your cart is empty.</p>
-          <Link
-            href={randomLink}
-            className="inline-block bg-green-500 text-white text-lg font-bold px-6 py-3 rounded-full hover:bg-green-600 shadow-lg transition duration-200 ease-in-out"
-          >
-            Continue Shopping 🛍️
+          <Alert variant="info" className="mb-6">
+            Your cart is empty.
+          </Alert>
+          <Link href={randomLink} passHref>
+            <Button className="text-lg font-bold">
+              Continue Shopping 
+            </Button>
           </Link>
         </div>
       ) : (
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-6">Your Cart</h2>
-          <ul className="space-y-6">
-            {cartItems.map((item, index) => (
-              <li
-                key={index}
-                className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-md"
-              >
-                <div className="flex items-center space-x-6">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-20 h-20 object-cover rounded-lg border"
-                  />
-                  <div>
-                    <h3 className="text-xl font-semibold">{item.name}</h3>
-                    <p className="text-gray-600">Price: {item.price}</p>
-                  </div>
-                </div>
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition duration-200"
-                  onClick={() => handleRemoveItem(index)}
+        <Card className="shadow-lg">
+          <CardHeader>
+            <CardTitle>Your Cart</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-6">
+              {cartItems.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-md"
                 >
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-
-          {/* Total Price Section */}
-          <div className="mt-8 text-right">
+                  <div className="flex items-center space-x-6">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-20 h-20 object-cover rounded-lg border"
+                    />
+                    <div>
+                      <h3 className="text-xl font-semibold">{item.name}</h3>
+                      <p className="text-gray-600">Price: {item.price}</p>
+                      {/* Display selected size and color */}
+                      <p className="text-gray-600">Size: {item.selectedSize}</p>
+                      <p className="text-gray-600">
+                        Color: <span style={{ backgroundColor: item.selectedColor, display: 'inline-block', width: '16px', height: '16px', borderRadius: '50%' }}></span> {item.selectedColor}
+                      </p>
+                    </div>
+                  </div>
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleRemoveItem(index)}
+                  >
+                    Remove
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+          <CardFooter className="mt-8 text-right flex flex-col space-y-4">
             <h2 className="text-2xl font-bold">
               Total: ${calculateTotalPrice().toFixed(2)}
             </h2>
-
             <div className="flex justify-end space-x-4 mt-4">
-              <button
-                className="bg-gray-800 text-white px-6 py-2 rounded-full hover:bg-gray-900 transition duration-200"
-                onClick={handleClearCart}
-              >
+              <Button variant="secondary" onClick={handleClearCart}>
                 Clear Cart
-              </button>
-
-              <button
-                className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition duration-200"
+              </Button>
+              <Button
+                variant="primary"
                 onClick={() => {
                   // Redirect to the checkout page
                   window.location.href = "/myCart/checkout";
                 }}
               >
                 Checkout
-              </button>
+              </Button>
             </div>
-          </div>
-        </div>
+          </CardFooter>
+        </Card>
       )}
     </div>
   );
