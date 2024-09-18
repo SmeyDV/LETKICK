@@ -1,99 +1,41 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, ShoppingCart } from "lucide-react";
+import { Menu, X, ShoppingCart, ChevronDown } from "lucide-react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
 
-const NavLink = ({ href, children, onClick }) => (
+const NavItem = React.forwardRef(({ className, ...props }, ref) => (
   <Link
-    href={href}
-    className="text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-150 ease-in-out"
-    onClick={onClick}
-  >
-    {children}
-  </Link>
-);
-
-const DropdownLink = ({ href, children, onClick }) => (
-  <Link
-    href={href}
-    className="block px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-blue-600 transition duration-150 ease-in-out"
-    onClick={onClick}
-  >
-    {children}
-  </Link>
-);
-
-const Dropdown = ({ title, items, isOpen, toggleDropdown, dropdownRef, isMobile }) => (
-  <div className={`${isMobile ? '' : 'relative'}`} ref={dropdownRef}>
-    <button
-      className="flex items-center text-gray-800 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium focus:outline-none transition duration-150 ease-in-out"
-      onClick={toggleDropdown}
-      aria-expanded={isOpen}
-      aria-haspopup="true"
-    >
-      {title}
-      <ChevronDown
-        className={`ml-1 h-4 w-4 transition-transform duration-200 ${
-          isOpen ? "transform rotate-180" : ""
-        }`}
-      />
-    </button>
-    {isOpen && (
-      <div className={`${isMobile ? 'mt-2' : 'absolute left-0 mt-2'} w-48 bg-white border border-gray-200 rounded-md shadow-lg z-20`}>
-        {items.map((item, index) => (
-          <DropdownLink
-            key={index}
-            href={item.href}
-            onClick={toggleDropdown}
-          >
-            {item.label}
-          </DropdownLink>
-        ))}
-      </div>
-    )}
-  </div>
-);
+    ref={ref}
+    className={`block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ${className}`}
+    {...props}
+  />
+));
+NavItem.displayName = "NavItem";
 
 export default function Navbar() {
   const [cartCount, setCartCount] = useState(0);
-  const [activeDropdown, setActiveDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
-  const toggleDropdown = (dropdown) => {
-    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
-  };
-
-  const closeDropdowns = () => {
-    setActiveDropdown(null);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (isMobileMenuOpen) {
-      closeDropdowns();
-    }
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const toggleSubMenu = () => setIsSubMenuOpen(!isSubMenuOpen);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        closeDropdowns();
-      }
+    const updateCartCount = () => {
+      const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+      setCartCount(existingCart.length);
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const updateCartCount = () => {
-    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCartCount(existingCart.length);
-  };
-
-  useEffect(() => {
     updateCartCount();
+    window.addEventListener("storage", updateCartCount);
+    return () => window.removeEventListener("storage", updateCartCount);
   }, []);
 
   const menItems = [
@@ -103,82 +45,100 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white shadow-lg border-b border-gray-300 fixed top-0 left-0 right-0 z-50">
+    <nav className="bg-white shadow-md border-b border-gray-200 fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <Link
-              href="/"
-              className="text-3xl font-bold text-blue-600 hover:text-blue-800 transition duration-150 ease-in-out"
-            >
+            <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-800 transition duration-300">
               Let Kicks
             </Link>
           </div>
 
-          <div className="hidden md:flex md:ml-auto">
-            <NavLink href="/">Home</NavLink>
-            <Dropdown
-              title="Men"
-              items={menItems}
-              isOpen={activeDropdown === "men"}
-              toggleDropdown={() => toggleDropdown("men")}
-              dropdownRef={dropdownRef}
-            />
-            <NavLink href="/contact">Contact</NavLink>
+          <div className="hidden md:flex md:items-center md:space-x-4">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="/" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
+                    Home
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
+                    Men
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[250px] gap-2 p-3">
+                      {menItems.map((item, index) => (
+                        <li key={index}>
+                          <NavItem href={item.href}>{item.label}</NavItem>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink href="/contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-lg font-medium transition duration-300">
+                    Contact
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
           <div className="flex items-center space-x-4">
-            <Link
-              href="/myCart"
-              className="relative text-gray-800 hover:text-blue-600 transition duration-150 ease-in-out"
-            >
+            <Link href="/myCart" className="relative text-gray-700 hover:text-blue-600 transition duration-300">
               <ShoppingCart className="h-6 w-6" />
               {cartCount > 0 && (
-                <span className="absolute top-0 right-0 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
             </Link>
 
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={toggleMobileMenu}
-              className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:text-blue-600 focus:outline-none transition duration-150 ease-in-out"
-              aria-expanded={isMobileMenuOpen}
+              className="md:hidden"
+              aria-label="Toggle mobile menu"
             >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
           </div>
         </div>
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <NavLink
-              href="/"
-              onClick={toggleMobileMenu}
+        <div className="md:hidden bg-white py-2">
+          <Link href="/" className="block text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium" onClick={toggleMobileMenu}>
+            Home
+          </Link>
+          <div className="relative">
+            <button 
+              onClick={toggleSubMenu}
+              className="flex items-center justify-between w-full text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium"
             >
-              Home
-            </NavLink>
-            <Dropdown
-              title="Men"
-              items={menItems}
-              isOpen={activeDropdown === "men-mobile"}
-              toggleDropdown={() => toggleDropdown("men-mobile")}
-              dropdownRef={dropdownRef}
-              isMobile={true}
-            />
-            <NavLink
-              href="/contact"
-              onClick={toggleMobileMenu}
-            >
-              Contact
-            </NavLink>
+              Men
+              <ChevronDown className={`h-4 w-4 ml-1 transition-transform duration-200 ${isSubMenuOpen ? 'transform rotate-180' : ''}`} />
+            </button>
+            {isSubMenuOpen && (
+              <div className="bg-gray-50 py-2">
+                {menItems.map((item, index) => (
+                  <Link 
+                    key={index} 
+                    href={item.href} 
+                    className="block text-gray-700 hover:text-blue-600 hover:bg-gray-100 px-6 py-2 text-sm" 
+                    onClick={toggleMobileMenu}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
+          <Link href="/contact" className="block text-gray-700 hover:text-blue-600 px-4 py-2 text-sm font-medium" onClick={toggleMobileMenu}>
+            Contact
+          </Link>
         </div>
       )}
     </nav>

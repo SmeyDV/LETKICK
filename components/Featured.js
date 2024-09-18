@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import { Card, CardHeader, CardContent, CardFooter } from "./ui/card"; // Importing Card components
+import { Button } from "./ui/button"; // Importing Button component
 
 const shoesData = [
   {
@@ -39,30 +41,36 @@ const shoesData = [
 export default function Featured() {
   return (
     <section className="py-10">
-      <div className="container mx-auto px-4 bg-white ">
-        <h2 className="text-4xl font-bold text-center text-gray-800 pt-2 mb-8 ">
+      <div className="container mx-auto px-4 bg-white">
+        <h2 className="text-4xl font-bold text-center text-gray-800 pt-2 mb-8">
           Featured Shoes
         </h2>
         <div className="flex flex-wrap justify-center mx-4">
           {shoesData.map((shoe) => (
-            <div key={shoe.id} className="w-full md:w-1/2 lg:w-1/4 px-6 mb-8 ">
-              <div className="bg-white rounded-lg border-2 p-6 text-center shadow-custom ">
-                <img
-                  src={shoe.image}
-                  alt={shoe.name}
-                  className="w-full h-52 object-contain mb-4 rounded-md"
-                />
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  {shoe.name}
-                </h3>
-                <p className="text-gray-600 mb-2">{shoe.price}</p>
-                <p className="text-gray-600 mb-4">{shoe.description}</p>
-                <Link href="/men-casual">
-                  <span className=" px-8 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 transition duration-300 cursor-pointer">
-                    Buy Now
-                  </span>
-                </Link>
-              </div>
+            <div key={shoe.id} className="w-full md:w-1/2 lg:w-1/4 px-6 mb-8">
+              <Card className="text-center h-full flex flex-col"> {/* Make the Card a flex container */}
+                <CardHeader className="p-0">
+                  <img
+                    src={shoe.image}
+                    alt={shoe.name}
+                    className="w-full h-52 object-contain mb-4 rounded-t-md"
+                  />
+                </CardHeader>
+                <CardContent className="flex-grow"> {/* Allow CardContent to grow and fill the space */}
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                    {shoe.name}
+                  </h3>
+                  <p className="text-gray-600 mb-2">{shoe.price}</p>
+                  <p className="text-gray-600 mb-4">{shoe.description}</p>
+                </CardContent>
+                <CardFooter className="flex justify-center mt-auto">
+                  <Link href="/men-casual" passHref>
+                    <Button variant="default">
+                      Buy Now
+                    </Button>
+                  </Link>
+                </CardFooter>
+              </Card>
             </div>
           ))}
         </div>

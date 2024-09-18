@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ShoppingBag } from "lucide-react";
+import { Button } from "./ui/button"; // Importing ShadCN Button component
 
 export default function HeroSection() {
   return (
@@ -31,17 +32,17 @@ export default function HeroSection() {
             </p>
             {/* Call-to-Action Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Link href="/men-casual">
-                <span className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-blue-600 bg-white hover:bg-gray-100 shadow-lg transition duration-300 ease-in-out hover:scale-105">
+              <Link href="/men-casual" passHref>
+                <Button variant="default" className="px-8 py-3 rounded-full shadow-lg transition duration-300 ease-in-out hover:scale-105">
                   <ShoppingBag className="w-5 h-5 mr-2" />
                   Shop Now
-                </span>
+                </Button>
               </Link>
-              <Link href="/contact">
-                <span className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-base font-medium rounded-full text-white hover:bg-white hover:text-blue-600 transition duration-300 ease-in-out hover:scale-105">
+              <Link href="/contact" passHref>
+                <Button variant="outline" className="px-8 py-3 rounded-full text-black border-white hover:bg-white  transition duration-300 ease-in-out hover:scale-105">
                   Contact Us
                   <ArrowRight className="w-5 h-5 ml-2" />
-                </span>
+                </Button>
               </Link>
             </div>
           </div>

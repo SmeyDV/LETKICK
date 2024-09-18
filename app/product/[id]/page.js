@@ -6,8 +6,11 @@ import Navbar from "@/components/NavBar";
 import ProductImage from "./ProductImage";
 import ProductInfo from "./ProductInfo";
 import ProductOptions from "./ProductOptions";
-import AddToCartButton from "./AddToCartButton";
 import AlertMessage from "./AlertMessage";
+import { Card, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Alert } from "@/components/ui/alert";
+import { ProductDetailsSkeleton } from "./ProductDetailsSkeleton"; // Import the Skeleton component
 
 export default function ProductDetails({ params }) {
   const { id } = params;
@@ -18,15 +21,23 @@ export default function ProductDetails({ params }) {
 
   useEffect(() => {
     if (id) {
-      const foundShoe = products.find((shoe) => shoe.id === parseInt(id));
-      setShoe(foundShoe);
+      // Simulate a network request
+      setTimeout(() => {
+        const foundShoe = products.find((shoe) => shoe.id === parseInt(id));
+        setShoe(foundShoe);
+      }, 1000); // Simulate loading delay
     }
   }, [id]);
 
   if (!shoe) {
+    // Display skeleton loader while the shoe is being fetched
     return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
+      <div className="min-h-screen flex flex-col bg-gray-100">
+        <Navbar />
+        <main className="mt-20 flex-grow">
+          <ProductDetailsSkeleton />
+        </main>
+        <Footer />
       </div>
     );
   }
@@ -45,7 +56,7 @@ export default function ProductDetails({ params }) {
       <Navbar />
       <main className="mt-20 flex-grow">
         <div className="container mx-auto py-12 px-4">
-          <div className="bg-white rounded-md overflow-hidden p-6 shadow-custom">
+          <Card className="rounded-md overflow-hidden p-6 shadow-custom">
             <div className="flex flex-col md:flex-row gap-6 md:gap-10">
               {/* Product Image */}
               <ProductImage image={shoe.image} name={shoe.name} />
@@ -71,12 +82,25 @@ export default function ProductDetails({ params }) {
                 />
 
                 {/* Add to Cart Button */}
-                <AddToCartButton handleAddToCart={handleAddToCart} />
+                <CardFooter className="flex justify-start">
+                  <Button onClick={handleAddToCart} variant="default">
+                    Add to Cart
+                  </Button>
+                </CardFooter>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </main>
+
+      {/* Alert Message */}
+      {showAlert && (
+        <div className="fixed bottom-4 right-4">
+          <Alert variant="success" className="w-64">
+            Item added to cart!
+          </Alert>
+        </div>
+      )}
 
       <Footer />
     </div>
