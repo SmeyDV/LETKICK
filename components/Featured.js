@@ -25,7 +25,7 @@ export default function Featured() {
   const [featuredShoes, setFeaturedShoes] = useState([]);
 
   useEffect(() => {
-    // Shuffle the products array and then take the first 4 items on the client side
+    // Shuffle the products array and then take the first 8 items on the client side
     const shuffledProducts = shuffleArray([...products]).slice(0, 8);
     setFeaturedShoes(shuffledProducts);
   }, []);
@@ -38,7 +38,7 @@ export default function Featured() {
         </h2>
         <div className="flex flex-wrap justify-center mx-4">
           {featuredShoes.map((shoe) => (
-            <div key={shoe.id} className="w-full md:w-1/2 lg:w-1/4 px-6 mb-8">
+            <div key={shoe.id} className="w-1/2 sm:w-1/2 lg:w-1/4 px-2 mb-8">
               <Link href={`/product/${shoe.id}`} passHref>
                 <Card className="text-center h-full flex flex-col cursor-pointer bg-white dark:bg-gray-800">
                   <CardHeader className="p-0">
