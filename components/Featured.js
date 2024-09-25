@@ -36,17 +36,20 @@ export default function Featured() {
         <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white pt-2 mb-8">
           Featured Shoes
         </h2>
-        <div className="flex flex-wrap justify-center mx-4 sm:hidden">
+
+        {/* Mobile Layout */}
+        <div className="flex flex-wrap justify-center mx-4 sm:hidden gap-4">
           {featuredShoes.map((shoe) => (
-            <div key={shoe.id} className="w-full px-1 mb-8"> 
+            <div key={shoe.id} className="w-[48%] px-2 mb-8"> 
               <Link href={`/product/${shoe.id}`} passHref>
                 <Card className="text-center h-full flex flex-col cursor-pointer bg-white dark:bg-gray-800">
                   <CardHeader className="p-0">
                     <img
                       src={shoe.image}
                       alt={shoe.name}
-                      className="w-full h-52 object-contain mb-4 rounded-t-md"
+                      className="w-full h-40 object-contain mb-4 rounded-t-md" 
                     />
+                    {/* Reduced height */}
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
@@ -63,18 +66,20 @@ export default function Featured() {
             </div>
           ))}
         </div>
-        <div className="hidden sm:flex sm:justify-center sm:flex-wrap mx-4"> {/* Only show on larger screens */}
-          {/* You can add a different layout for larger screens here */}
+
+        {/* Larger Screen Layout */}
+        <div className="hidden sm:flex sm:justify-center sm:flex-wrap mx-4 gap-4"> 
           {featuredShoes.map((shoe) => (
-            <div key={shoe.id} className="sm:w-1/2 md:w-1/3 lg:w-1/4 px-1 mb-8">
+            <div key={shoe.id} className="sm:w-[48%] md:w-[30%] lg:w-[22%] px-2 mb-8">
               <Link href={`/product/${shoe.id}`} passHref>
                 <Card className="text-center h-full flex flex-col cursor-pointer bg-white dark:bg-gray-800">
                   <CardHeader className="p-0">
                     <img
                       src={shoe.image}
                       alt={shoe.name}
-                      className="w-full h-52 object-contain mb-4 rounded-t-md"
+                      className="w-full h-40 object-contain mb-4 rounded-t-md" 
                     />
+                    {/* Reduced height */}
                   </CardHeader>
                   <CardContent className="flex-grow">
                     <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
