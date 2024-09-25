@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import { ThemeProvider } from "next-themes"; // Import ThemeProvider from next-themes
+import type { Metadata } from "next"; 
+import { Roboto_Condensed } from "next/font/google";
+import { ThemeProvider } from "next-themes"; 
 import "./globals.css";
 
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
+const robotoCondensed = Roboto_Condensed({ subsets: ["latin"], weight: ["400", "700"] }); // Change to Roboto Condensed
 
 export const metadata: Metadata = {
   title: "Let Kicks",
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* Add class attribute to enable class-based theme switching */}
-      <body className={poppins.className}>
+      <body className={robotoCondensed.className}> {/* Update to robotoCondensed */}
         <ThemeProvider attribute="class">
           {" "}
           {/* Wrap with ThemeProvider */}
