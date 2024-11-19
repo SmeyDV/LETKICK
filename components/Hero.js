@@ -6,7 +6,7 @@ import { Button } from "./ui/button"; // Importing ShadCN Button component
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-r from-blue-500 to-indigo-500 dark:from-gray-800 dark:to-gray-900 overflow-hidden min-h-screen flex items-center">
+    <section className="relative bg-gradient-to-r from-blue-500 to-indigo-600 overflow-hidden min-h-screen flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
